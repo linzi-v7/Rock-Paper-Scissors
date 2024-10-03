@@ -120,4 +120,6 @@ function playGame()
     {
         alert("TIE :( REFRESH AND TRY AGAIN.");
     }
+
+    alert("GAME ENDED :( REFRESH TO TRY AGAIN <3 OR CHECK CONSOLE TAB FOR SCORES!")
 }
