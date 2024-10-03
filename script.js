@@ -1,7 +1,7 @@
-console.log("Hello World");
-
 let humanScore = 0;
 let computerScore = 0;
+
+playGame();
 
 function getComputerChoice()
 {
@@ -26,29 +26,37 @@ function getComputerChoice()
 
 function getHumanChoice()
 {
-    let choice = prompt("Choose between: Rock, Paper and Scissors. Type (R,P,S) for faster choice if you like.")
 
-    choice = choice.toLowerCase();
-    let rock = (choice == "r" || choice == "rock");
-    let paper = (choice == "p" || choice == "paper");
-    let scissors = (choice == "s" || choice == "scissors");
+    let tryAgain = true;
 
-    if (rock)
+    do
     {
-        return "Rock";
-    }
-    else if (paper)
-    {
-        return "Paper";
-    }
-    else if (scissors)
-    {
-        return "Scissors";
-    }
-    else
-    {
-        console.log("INVALID CHOICE! REFRESH")
-    }
+        let choice = prompt("Choose between: Rock, Paper and Scissors. Type (R,P,S) for faster choice if you like.")
+
+        //choice = choice.toLowerCase();
+        let rock = (choice == "r" || choice == "rock");
+        let paper = (choice == "p" || choice == "paper");
+        let scissors = (choice == "s" || choice == "scissors");
+
+
+        if (rock)
+        {
+            return "Rock";
+        }
+        else if (paper)
+        {
+            return "Paper";
+        }
+        else if (scissors)
+        {
+            return "Scissors";
+        }
+        else
+        {
+            tryAgain = true;
+            console.log("INVALID INPUT");
+        }
+    } while (tryAgain == true)
 
 }
 
@@ -100,14 +108,51 @@ function playRound(humanChoice, computerChoice)
     if (humanWin)
     {
         humanScore++;
-        console.log("You win! " + humanChoice + " beats" + computerChoice);
+        alert("You win! " + humanChoice + " beats " + computerChoice);
     }
     else if (computerWin)
     {
         computerScore++;
-        console.log("You lose! " + computerChoice + " beats" + humanChoice);
+        alert("You lose! " + computerChoice + " beats " + humanChoice);
 
+    }
+    else
+    {
+        alert("TIE! " + humanChoice + " ties with computer choice  " + computerChoice)
     }
 
     console.log("Current human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
+}
+
+function playGame()
+{
+
+    for (let index = 0; index < 5; index++) 
+    {
+        alert(`ROUND ${index + 1}`)
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+
+        console.log("-----------------------------------")
+
+        if (index < 4)
+            alert("Start next round?")
+    }
+
+
+    if (humanScore > computerScore)
+    {
+        alert("HUMAN WINS!");
+    }
+    else if (computerScore > humanScore)
+    {
+        alert("COMPUTER WINS!");
+    }
+    else
+    {
+        alert("TIE :( REFRESH AND TRY AGAIN.");
+    }
 }
