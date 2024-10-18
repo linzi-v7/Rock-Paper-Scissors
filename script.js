@@ -24,26 +24,15 @@ function getComputerChoice()
 
 function getHumanChoice()
 {
-    let choice = prompt("Choose between: Rock, Paper and Scissors. Type (R,P,S) for faster choice if you like.");
 
-    choice = choice.toLowerCase();
-    let rock = (choice == "r" || choice == "rock");
-    let paper = (choice == "p" || choice == "paper");
-    let scissors = (choice == "s" || choice == "scissors");
+    const buttons = document.querySelector(".player-selection");
 
-
-    if (rock)
+    buttons.addEventListener("click", function (event)
     {
-        return "Rock";
-    }
-    else if (paper)
-    {
-        return "Paper";
-    }
-    else if (scissors)
-    {
-        return "Scissors";
-    }
+        let btn = event.target;
+        console.log(btn.innerText);
+        return btn.value;
+    })
 
 
 }
@@ -67,27 +56,23 @@ function playGame()
 
     let humanScore = 0;
     let computerScore = 0;
+    let roundCounter = 1;
 
-    for (let index = 0; index < 5; index++) 
+    while (humanScore != 5 || computerScore != 5) //first to 5
     {
-        alert(`ROUND ${index + 1}`)
+
+        // alert(`ROUND ${counter}`)
 
         let humanSelection = getHumanChoice();
         let computerSelection = getComputerChoice();
 
-        while ((humanSelection == computerSelection) || (humanSelection === undefined)) //tie or invalid choice
+        while ((humanSelection == computerSelection)) //tie
         {
-            if (humanSelection === undefined)
-            {
-                alert("INVALID CHOICE, PLEASE TRY AGAIN!");
-            }
-            else if (humanSelection == computerSelection)
-            {
-                alert("TIE, REDRAWING");
-            }
+            alert("TIE, REDRAWING");
 
             humanSelection = getHumanChoice();
             computerSelection = getComputerChoice();
+
         }
 
 
@@ -105,6 +90,8 @@ function playGame()
         console.log("Current human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
         console.log("-----------------------------------")
 
+        roundCounter++;
+
     }
 
 
@@ -116,10 +103,7 @@ function playGame()
     {
         alert("COMPUTER WINS!");
     }
-    else
-    {
-        alert("TIE :( REFRESH AND TRY AGAIN.");
-    }
 
-    alert("GAME ENDED :( REFRESH TO TRY AGAIN <3 OR CHECK CONSOLE TAB FOR SCORES!")
+
+    alert("GAME ENDED :(")
 }
