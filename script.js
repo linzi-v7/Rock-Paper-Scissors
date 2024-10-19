@@ -1,5 +1,24 @@
 
-playGame();
+let humanScore = 0;
+let computerScore = 0;
+let roundCounter = 0;
+
+updateRoundCounter(++roundCounter);
+startGame();
+
+function startGame()
+{
+
+    const buttons = document.querySelector(".player-selection");
+
+    buttons.addEventListener("click", function (event)
+    {
+        let btn = event.target;
+        playGame(btn);
+    });
+
+
+}
 
 function getComputerChoice()
 {
@@ -22,20 +41,6 @@ function getComputerChoice()
     }
 }
 
-function getHumanChoice()
-{
-
-    const buttons = document.querySelector(".player-selection");
-
-    buttons.addEventListener("click", function (event)
-    {
-        let btn = event.target;
-        console.log(btn.innerText);
-        return btn.value;
-    })
-
-
-}
 
 function playRound(humanChoice, computerChoice)
 {
@@ -51,59 +56,70 @@ function playRound(humanChoice, computerChoice)
     return humanWin;
 }
 
-function playGame()
+function playGame(btn)
 {
 
-    let humanScore = 0;
-    let computerScore = 0;
-    let roundCounter = 1;
-
-    while (humanScore != 5 || computerScore != 5) //first to 5
+    const gameEnd = humanScore == 5 || computerScore == 5;
+    if (gameEnd)
     {
-
-        // alert(`ROUND ${counter}`)
-
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-
-        while ((humanSelection == computerSelection)) //tie
-        {
-            alert("TIE, REDRAWING");
-
-            humanSelection = getHumanChoice();
-            computerSelection = getComputerChoice();
-
-        }
+        return;
+    }
 
 
-        if (playRound(humanSelection, computerSelection) == true) //human won
-        {
-            alert("You win! " + humanSelection + " beats " + computerSelection);
-            humanScore++;
-        }
-        else //human lost
-        {
-            alert("You lose! " + computerSelection + " beats " + humanSelection);
-            computerScore++;
-        }
+    let humanSelection = btn.innerText;
+    let computerSelection = getComputerChoice();
 
-        console.log("Current human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
-        console.log("-----------------------------------")
 
-        roundCounter++;
+    if ((humanSelection == computerSelection)) 
+    {
+        alert("TIE, choose again");
+        updateRoundCounter(++roundCounter)
+        return;
 
     }
 
 
-    if (humanScore > computerScore)
+    if (playRound(humanSelection, computerSelection) == true) //human won
     {
-        alert("HUMAN WINS!");
+        alert("You win! " + humanSelection + " beats " + computerSelection);
+        humanScore++;
     }
-    else if (computerScore > humanScore)
+    else //human lost
     {
-        alert("COMPUTER WINS!");
+        alert("You lose! " + computerSelection + " beats " + humanSelection);
+        computerScore++;
     }
 
+    console.log("Current human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
+    console.log("-----------------------------------")
 
-    alert("GAME ENDED :(")
+
+
+    //final round
+    if (humanScore == 5)
+    {
+        console.log("HUMAN WINS!");
+        return;
+    }
+    else if (computerScore == 5)
+    {
+        console.log("COMPUTER WINS!");
+        return;
+    }
+    else 
+    {
+        updateRoundCounter(++roundCounter);
+    }
+
 }
+
+function updateRoundCounter(roundCounter)
+{
+    const roundCount = document.querySelector(".round-counter > h2");
+    roundCount.innerText = `ROUND ${roundCounter}`;
+
+}
+
+
+
+
