@@ -1,16 +1,13 @@
 # Rock Paper Scissors - Console Game
 
-Welcome to **Rock Paper Scissors**, a small web-based game that simulates the classic game of "Rock, Paper, Scissors" in the browser's console. This game runs for **5 rounds**. The computer randomly selects a choice, and the human player is prompted to enter their choice. This project is one of the foundations projects in The Odin Project web development course.
+Welcome to **Rock Paper Scissors**, a small web-based game that simulates the classic game of "Rock, Paper, Scissors" in the browser. This game runs until someone reaches 5 points. The computer randomly selects a choice, and the human player is free to choose their choice from the buttons. This project is one of the foundations projects in The Odin Project web development course.
 
 ## How to Play
 
-1. Open your browser's Developer Tools (Console tab) to check scores as the game runs.
-   - In Google Chrome: Right-click on the page > Inspect > Console tab.
-   - In Firefox: Right-click on the page > Inspect > Console tab.
-2. The game will automatically start.
-3. You will be prompted to enter your choice (`rock`, `paper`, or `scissors`) for 5 rounds.
-4. The computer will randomly generate its choice each round.
-5. After 5 rounds, the final score will be displayed.
+1. Choose your choice from one of the buttons displayed.
+2. The computer will randomly generate its choice each round.
+3. First to 5 points wins.
+5. At the end, a winner is declared.
 
 ## Game Rules
 
