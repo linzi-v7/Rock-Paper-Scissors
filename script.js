@@ -72,38 +72,39 @@ function playGame(btn)
 
     if ((humanSelection == computerSelection)) 
     {
-        alert("TIE, choose again");
+        updateRoundDetails("TIE, choose again");
         updateRoundCounter(++roundCounter)
         return;
 
     }
 
+    let roundResult = ""
 
     if (playRound(humanSelection, computerSelection) == true) //human won
     {
-        alert("You win! " + humanSelection + " beats " + computerSelection);
+        roundResult = "You win! " + humanSelection + " beats " + computerSelection;
         humanScore++;
     }
     else //human lost
     {
-        alert("You lose! " + computerSelection + " beats " + humanSelection);
+        roundResult = "You lose! " + computerSelection + " beats " + humanSelection;
         computerScore++;
     }
 
-    console.log("Current human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
-    console.log("-----------------------------------")
+    updateRoundDetails(roundResult + "\nCurrent human score: " + humanScore + "\nCurrent Computer Score: " + computerScore);
+
 
 
 
     //final round
     if (humanScore == 5)
     {
-        console.log("HUMAN WINS!");
+        updateRoundDetails("HUMAN WINS! REFRESH TO TRY AGAIN");
         return;
     }
     else if (computerScore == 5)
     {
-        console.log("COMPUTER WINS!");
+        updateRoundDetails("COMPUTER WINS! REFRESH TO TRY AGAIN");
         return;
     }
     else 
@@ -115,11 +116,17 @@ function playGame(btn)
 
 function updateRoundCounter(roundCounter)
 {
-    const roundCount = document.querySelector(".round-counter > h2");
+    const roundCount = document.querySelector(".round-counter");
     roundCount.innerText = `ROUND ${roundCounter}`;
 
 }
 
+
+function updateRoundDetails(text)
+{
+    const roundDetails = document.querySelector(".round-details");
+    roundDetails.innerText = text;
+}
 
 
 

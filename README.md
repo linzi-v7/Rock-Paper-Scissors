@@ -26,6 +26,7 @@ Welcome to **Rock Paper Scissors**, a small web-based game that simulates the cl
 
 ## Future Improvements
 
-- Add a GUI to the game
-- Add a reset or restart option after the game ends
+- Add a simple GUI to the game (DONE).
+- Enhance the user interface by improving the design and adding a clean, polished style.
+- Add a reset or restart option after the game ends.
 - Add endless mode and save highest score.
